@@ -136,7 +136,9 @@ class NativeExifPlugin: FlutterPlugin, MethodCallHandler {
             ExifInterface.TAG_SUBSEC_TIME_ORIGINAL,
             ExifInterface.TAG_SUBSEC_TIME_DIGITIZED,
             ExifInterface.TAG_USER_COMMENT,
-            ExifInterface.TAG_WHITE_BALANCE
+            ExifInterface.TAG_WHITE_BALANCE,
+            ExifInterface.TAG_FOCAL_LENGTH_IN_35MM_FILM,
+            ExifInterface.TAG_IMAGE_DESCRIPTION,
           )
 
           val attributeMap = HashMap<String, Any>()

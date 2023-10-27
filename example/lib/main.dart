@@ -108,6 +108,7 @@ class _MyAppState extends State<MyApp> {
                   Text(attributes?["UserComment"]?.toString() ?? ''),
                   Text("Attributes: $attributes"),
                   Text("Coordinates: $coordinates"),
+                  Text("ImageDescription: ${attributes?['ImageDescription']}"),
                   TextButton(
                     onPressed: () async {
                       try {
