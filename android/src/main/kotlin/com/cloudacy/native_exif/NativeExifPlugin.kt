@@ -8,6 +8,7 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import kotlin.math.absoluteValue
+import android.util.Log
 
 /** NativeExifPlugin */
 class NativeExifPlugin: FlutterPlugin, MethodCallHandler {
@@ -144,8 +145,23 @@ class NativeExifPlugin: FlutterPlugin, MethodCallHandler {
           val attributeMap = HashMap<String, Any>()
 
           for (tag in tags)
-            exif.getAttribute(tag)?.let { attributeMap[tag] = it }
+            exif.getAttribute(tag)?.let {
 
+              if(tag == ExifInterface.TAG_IMAGE_DESCRIPTION){
+                exif.getAttributeBytes(tag)?.let {
+                  var _string = String(it)
+                  attributeMap[tag] = _string
+                  Log.d("NativeExif", "exif ${_string}: " + it);
+                }
+              }else{
+                attributeMap[tag] = it
+                Log.d("NativeExif", "exif ${tag}: " + it)
+              }
+            }
+
+
+
+          Log.d("NativeExif", "exif \n:asdsad\nasdada ");
           val latLong = exif.latLong
           if (latLong != null) {
             attributeMap[ExifInterface.TAG_GPS_LATITUDE] = latLong[0].absoluteValue
